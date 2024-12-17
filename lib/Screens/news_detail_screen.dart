@@ -61,12 +61,12 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                   ),
                   InkWell(
                     onTap: () async {
-                      if (await canLaunchUrl(
-                          Uri.parse(widget.articles.url.toString()))) {
+                      try {
                         await launchUrl(
-                            Uri.parse(widget.articles.url.toString()));
-                      } else {
-                        throw 'Could not launch this url';
+                          Uri.parse(widget.articles.url.toString()),
+                        );
+                      } catch (e) {
+                        print(e);
                       }
                     },
                     child: Text(
